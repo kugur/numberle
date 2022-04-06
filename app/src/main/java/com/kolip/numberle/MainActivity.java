@@ -1,15 +1,25 @@
 package com.kolip.numberle;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    GameManager gameManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((CustomNumPad) findViewById(R.id.customNumPad)).setKeyListener(v -> onKeyClicked(v));
+        init();
+    }
+
+    private void init() {
+        gameManager = new GameManager(getBoxes());
     }
 
 
@@ -47,5 +57,15 @@ public class MainActivity extends AppCompatActivity {
         };
 
         return boxes;
+    }
+
+    private void onKeyClicked(View view) {
+        if (view.getId() == R.id.key_Enter) {
+            gameManager.enter();
+        } else if (view.getId() == R.id.key_delete) {
+            gameManager.delete();
+        } else {
+            gameManager.write(String.valueOf(((TextView)view).getText()));
+        }
     }
 }

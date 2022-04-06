@@ -47,7 +47,7 @@ public class CustomNumPad extends LinearLayout {
         keys.add(findViewById(R.id.key_delete));
         keys.add(findViewById(R.id.key_Enter));
 
-        keys.forEach(key -> key.setOnClickListener(v -> keyListener.accept(v)));
+        keys.forEach(key -> key.setOnClickListener(keyListener::accept));
     }
 
     public void setKeyListener(Consumer<View> listener) {

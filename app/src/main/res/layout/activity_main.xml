@@ -36,6 +36,8 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_1_col_4"
                 style="@style/boxStyle" />
+            <com.kolip.numberle.ResultView
+                style="@style/resultViewStyle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -62,6 +64,8 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_2_col_4"
                 style="@style/boxStyle" />
+            <com.kolip.numberle.ResultView
+                style="@style/resultViewStyle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -88,6 +92,8 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_3_col_4"
                 style="@style/boxStyle" />
+            <com.kolip.numberle.ResultView
+                style="@style/resultViewStyle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -114,6 +120,8 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_4_col_4"
                 style="@style/boxStyle" />
+            <com.kolip.numberle.ResultView
+                style="@style/resultViewStyle"/>
         </LinearLayout>
 
 
@@ -141,6 +149,9 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_5_col_4"
                 style="@style/boxStyle" />
+
+            <com.kolip.numberle.ResultView
+                style="@style/resultViewStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -167,10 +178,14 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_6_col_4"
                 style="@style/boxStyle" />
+
+            <com.kolip.numberle.ResultView
+               style="@style/resultViewStyle"/>
         </LinearLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.kolip.numberle.CustomNumPad
+        android:id="@+id/customNumPad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" />
