@@ -2,7 +2,6 @@ package com.kolip.numberle;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +18,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        gameManager = new GameManager(getBoxes());
+        gameManager = new GameManager(this, getBoxes(), getResultViews());
     }
 
+    private ResultView[] getResultViews() {
+        ResultView[] resultViews = {
+                findViewById(R.id.row_1_result),
+                findViewById(R.id.row_2_result),
+                findViewById(R.id.row_3_result),
+                findViewById(R.id.row_4_result),
+                findViewById(R.id.row_5_result),
+                findViewById(R.id.row_6_result)
+        };
+        return resultViews;
+    }
 
     private BoxView[][] getBoxes() {
         BoxView[][] boxes = {
@@ -65,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.key_delete) {
             gameManager.delete();
         } else {
-            gameManager.write(String.valueOf(((TextView)view).getText()));
+            gameManager.write(String.valueOf(((TextView) view).getText()));
         }
     }
 }

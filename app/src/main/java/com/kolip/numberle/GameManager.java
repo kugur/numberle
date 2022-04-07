@@ -2,22 +2,32 @@ package com.kolip.numberle;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class GameManager {
     private BoxView[][] boxes;
+    private ResultView[] resultViews;
+    private MainActivity parent;
 
     private int currentRow;
     private int currentCol;
     private String[] enteredNumber = new String[4];
-    private String correctNumber = "1234";
+    private String correctNumber;
 
-    public GameManager(BoxView[][] boxes) {
+    public GameManager(MainActivity parent, BoxView[][] boxes, ResultView[] resultViews) {
         this.boxes = boxes;
+        this.parent = parent;
+        this.resultViews = resultViews;
+
+        correctNumber = generateCorrectNumber();
+        Log.d("Generated number", correctNumber);
     }
 
     public void enter() {
         NumberResult result = generateResult();
+        resultViews[currentRow].setValue(result);
         Log.d("Number Result", result.toString());
-        setResult(result);
         currentCol = 0;
         currentRow++;
 
@@ -66,7 +76,19 @@ public class GameManager {
                 wrongNumberCount);
     }
 
-    private void setResult(NumberResult result) {
-        //TODO(Ugur) result should be set to resultViewc
+    private String generateCorrectNumber() {
+        String generatedNumber = "";
+        ArrayList<String> numbers = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            numbers.add(String.valueOf(i));
+        }
+
+        Collections.shuffle(numbers);
+
+        for (int i = 0; i < 4; i++) {
+            generatedNumber += numbers.get(i);
+        }
+
+        return generatedNumber;
     }
 }
