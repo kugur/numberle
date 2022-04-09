@@ -4,7 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_start"
     tools:context=".MainActivity">
+
+    <ImageButton
+        android:layout_width="76dp"
+        android:layout_height="61dp"
+        android:backgroundTint="@color/transperant"
+        android:src="@drawable/ic_baseline_help_24"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="246dp"
+        android:layout_height="73dp"
+        android:src="@drawable/ic_drawing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:layout_width="77dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/transperant"
+        android:src="@drawable/statistic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/title_divider"
+        style="@style/divider"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat">
+
+
+        <com.kolip.numberle.DiamondView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:diamondValue="+4" />
+
+        <com.kolip.numberle.DiamondView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:diamondValue="+3" />
+        <com.kolip.numberle.DiamondView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:diamondValue="+2" />
+        <com.kolip.numberle.DiamondView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:diamondValue="+1" />
+        <com.kolip.numberle.DiamondView
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:diamondValue="+3" />
+        <com.kolip.numberle.DiamondView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:diamondValue="+3" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
@@ -14,12 +92,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.07999998">
 
         <LinearLayout
             android:id="@+id/row_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
 
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_1_col_1"
@@ -36,9 +116,10 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_1_col_4"
                 style="@style/boxStyle" />
+
             <com.kolip.numberle.ResultView
                 android:id="@+id/row_1_result"
-                style="@style/resultViewStyle"/>
+                style="@style/resultViewStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,9 +146,10 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_2_col_4"
                 style="@style/boxStyle" />
+
             <com.kolip.numberle.ResultView
                 android:id="@+id/row_2_result"
-                style="@style/resultViewStyle"/>
+                style="@style/resultViewStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -94,9 +176,10 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_3_col_4"
                 style="@style/boxStyle" />
+
             <com.kolip.numberle.ResultView
                 android:id="@+id/row_3_result"
-                style="@style/resultViewStyle"/>
+                style="@style/resultViewStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -123,9 +206,10 @@
             <com.kolip.numberle.BoxView
                 android:id="@+id/row_4_col_4"
                 style="@style/boxStyle" />
+
             <com.kolip.numberle.ResultView
                 android:id="@+id/row_4_result"
-                style="@style/resultViewStyle"/>
+                style="@style/resultViewStyle" />
         </LinearLayout>
 
 
@@ -186,10 +270,17 @@
 
             <com.kolip.numberle.ResultView
                 android:id="@+id/row_6_result"
-               style="@style/resultViewStyle"/>
+                style="@style/resultViewStyle" />
         </LinearLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <ImageButton
+        android:layout_width="52dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_joker_give_life_2"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent" />
     <com.kolip.numberle.CustomNumPad
         android:id="@+id/customNumPad"
         android:layout_width="match_parent"

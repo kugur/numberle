@@ -26,17 +26,21 @@ public class GameManager {
 
     public void enter() {
         NumberResult result = generateResult();
-        resultViews[currentRow].setValue(result);
-        Log.d("Number Result", result.toString());
         currentCol = 0;
         currentRow++;
-
+        resultViews[currentRow - 1].setValue(result, parent::gameFinished);
+        Log.d("Number Result", result.toString());
     }
 
     public void write(String text) {
         if (!"".equals(boxes[currentRow][currentCol].getText()) &&
                 currentCol == boxes[0].length - 1) {
             return;
+        }
+
+        if (!"".equals(boxes[currentRow][currentCol].getText()) &&
+                currentCol < boxes[0].length - 1) {
+            currentCol++;
         }
 
         boxes[currentRow][currentCol].setText(text);
@@ -46,9 +50,14 @@ public class GameManager {
             currentCol++;
         }
 
+
     }
 
     public void delete() {
+        if (boxes[currentRow][currentCol].getText().equals("") && currentCol > 0) {
+            currentCol--;
+        }
+
         boxes[currentRow][currentCol].setText("");
         enteredNumber[currentCol] = "";
 
@@ -90,5 +99,9 @@ public class GameManager {
         }
 
         return generatedNumber;
+    }
+
+    public int getCurrentRow() {
+        return  currentRow;
     }
 }
