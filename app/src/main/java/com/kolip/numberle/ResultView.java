@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class ResultView extends LinearLayout {
+    int[] blockIds = {R.id.result_view_box_1,
+            R.id.result_view_box_2,
+            R.id.result_view_box_3,
+            R.id.result_view_box_4};
+
     public ResultView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initializeLayout(context);
@@ -36,19 +41,15 @@ public class ResultView extends LinearLayout {
         View.inflate(context, R.layout.result_view_layout, this);
     }
 
+    public void clear() {
+        for (int i = 0; i < blockIds.length; i++) {
+            findViewById(blockIds[i])
+                    .setBackground(getResources().getDrawable(R.drawable.box_background));
+        }
+    }
+
     public void setValue(NumberResult result, Consumer<NumberResult> onFinished) {
-        ArrayList<Integer> colorList = new ArrayList<>();
-        for (int i = 0; i < result.getCorrectPositionNumberCount(); i++) {
-            colorList.add(Color.GREEN);
-        }
-
-        for (int i = 0; i < result.getWrongPositionNumberCount(); i++) {
-            colorList.add(Color.YELLOW);
-        }
-
-        for (int i = 0; i < result.getWrongNumber(); i++) {
-            colorList.add(Color.GRAY);
-        }
+        ArrayList<Integer> colorList = generateColorListForResult(result);
 
         setOneColor(R.id.result_view_box_1, colorList.get(0),
                 () -> setOneColor(R.id.result_view_box_2, colorList.get(1),
@@ -72,5 +73,28 @@ public class ResultView extends LinearLayout {
                 }
             }
         });
+    }
+
+    private ArrayList<Integer> generateColorListForResult(NumberResult result) {
+        ArrayList<Integer> colorList = new ArrayList<>();
+        for (int i = 0; i < result.getCorrectPositionNumberCount(); i++) {
+            colorList.add(Color.GREEN);
+        }
+
+        for (int i = 0; i < result.getWrongPositionNumberCount(); i++) {
+            colorList.add(Color.YELLOW);
+        }
+
+        for (int i = 0; i < result.getWrongNumber(); i++) {
+            colorList.add(Color.GRAY);
+        }
+        return colorList;
+    }
+
+    public void setAllColor(NumberResult results) {
+        ArrayList<Integer> colorList = generateColorListForResult(results);
+        for (int i = 0; i < blockIds.length; i++) {
+            findViewById(blockIds[i]).setBackgroundColor(colorList.get(i));
+        }
     }
 }
