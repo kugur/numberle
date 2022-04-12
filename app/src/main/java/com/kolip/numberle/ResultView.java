@@ -4,7 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +49,7 @@ public class ResultView extends LinearLayout {
     }
 
     public void setValue(NumberResult result, Consumer<NumberResult> onFinished) {
-        ArrayList<Integer> colorList = generateColorListForResult(result);
+        ArrayList<Drawable> colorList = generateColorListForResult(result);
 
         setOneColor(R.id.result_view_box_1, colorList.get(0),
                 () -> setOneColor(R.id.result_view_box_2, colorList.get(1),
@@ -58,15 +58,16 @@ public class ResultView extends LinearLayout {
                                         () -> onFinished.accept(result)))));
     }
 
-    private void setOneColor(int viewId, int color, Runnable onEnd) {
+    private void setOneColor(int viewId, Drawable color, Runnable onEnd) {
         Log.d("setOneColor", "color set " + viewId);
-        ObjectAnimator animation = ObjectAnimator.ofArgb(findViewById(viewId), "backgroundColor",
-                getResources().getColor(R.color.background_color_start), color);
+        ObjectAnimator animation = ObjectAnimator.ofArgb(findViewById(viewId), "",
+                1, 2);
         animation.setDuration(400);
         animation.start();
         animation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                findViewById(viewId).setBackground(color);
                 super.onAnimationEnd(animation);
                 if (onEnd != null) {
                     onEnd.run();
@@ -75,26 +76,26 @@ public class ResultView extends LinearLayout {
         });
     }
 
-    private ArrayList<Integer> generateColorListForResult(NumberResult result) {
-        ArrayList<Integer> colorList = new ArrayList<>();
+    private ArrayList<Drawable> generateColorListForResult(NumberResult result) {
+        ArrayList<Drawable> colorList = new ArrayList<>();
         for (int i = 0; i < result.getCorrectPositionNumberCount(); i++) {
-            colorList.add(Color.GREEN);
+            colorList.add(getResources().getDrawable(R.drawable.green_box));
         }
 
         for (int i = 0; i < result.getWrongPositionNumberCount(); i++) {
-            colorList.add(Color.YELLOW);
+            colorList.add(getResources().getDrawable(R.drawable.yellow_box));
         }
 
         for (int i = 0; i < result.getWrongNumber(); i++) {
-            colorList.add(Color.GRAY);
+            colorList.add(getResources().getDrawable(R.drawable.grey_box));
         }
         return colorList;
     }
 
     public void setAllColor(NumberResult results) {
-        ArrayList<Integer> colorList = generateColorListForResult(results);
+        ArrayList<Drawable> colorList = generateColorListForResult(results);
         for (int i = 0; i < blockIds.length; i++) {
-            findViewById(blockIds[i]).setBackgroundColor(colorList.get(i));
+            findViewById(blockIds[i]).setBackground(colorList.get(i));
         }
     }
 }
