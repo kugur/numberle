@@ -1,5 +1,7 @@
 package com.kolip.numberle;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -13,9 +15,12 @@ public class GameManager {
 
     private int currentRow;
     private int currentCol;
-    private String[] enteredNumber = new String[4];
+    private String[] enteredNumber = {"", "", "", ""};
     private String correctNumber;
+    private Drawable backgroundGrey;
+    private Drawable backgroundBlack;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public GameManager(MainActivity parent, BoxView[][] boxes, ResultView[] resultViews,
                        String correctNumber) {
         this.boxes = boxes;
@@ -23,6 +28,8 @@ public class GameManager {
         this.resultViews = resultViews;
         this.correctNumber = correctNumber.equals("") ? generateCorrectNumber() : correctNumber;
 
+        backgroundBlack = parent.getResources().getDrawable(R.drawable.box_background_dark);
+        backgroundGrey = parent.getResources().getDrawable(R.drawable.box_background);
         Log.d("Generated number", correctNumber);
     }
 
@@ -32,7 +39,12 @@ public class GameManager {
         NumberResult result = generateResult();
         currentCol = 0;
         currentRow++;
-        resultViews[currentRow - 1].setValue(result, parent::gameFinished);
+        resultViews[currentRow - 1].setValue(result, (numberResult) -> {
+            parent.gameFinished(numberResult);
+            setBoxFocus(currentRow, currentCol, true);
+            clearEnteredNumber();
+        });
+
         Log.d("Number Result", result.toString());
     }
 
@@ -49,25 +61,29 @@ public class GameManager {
 
         boxes[currentRow][currentCol].setText(text);
         enteredNumber[currentCol] = text;
+        setBoxFocus(currentRow, currentCol, false);
 
         if (currentCol < boxes[0].length - 1) {
             currentCol++;
+            setBoxFocus(currentRow, currentCol, true);
         }
     }
 
     public String delete() {
         String deletedKey = "";
+
         if (boxes[currentRow][currentCol].getText().equals("") && currentCol > 0) {
+            setBoxFocus(currentRow, currentCol, false);
             currentCol--;
         }
 
         boxes[currentRow][currentCol].setText("");
+        setBoxFocus(currentRow, currentCol, true);
         deletedKey = enteredNumber[currentCol];
         enteredNumber[currentCol] = "";
-
-        if (currentCol > 0) {
-            currentCol--;
-        }
+//        if (currentCol > 0) {
+//            currentCol--;
+//        }
 
         return deletedKey;
     }
@@ -75,12 +91,13 @@ public class GameManager {
     public String newGame() {
         currentCol = 0;
         currentRow = 0;
-        enteredNumber = new String[4];
+        clearEnteredNumber();
         correctNumber = generateCorrectNumber();
 
         for (int row = 0; row < boxes.length; row++) {
             for (int col = 0; col < 4; col++) {
                 boxes[row][col].setText("");
+                setBoxFocus(row, col, false);
             }
         }
 
@@ -148,6 +165,19 @@ public class GameManager {
             resultViews[currentRow].setAllColor(generateResult());
             currentRow++;
             currentCol = 0;
+            clearEnteredNumber();
+        }
+    }
+
+    private void setBoxFocus(int row, int col, boolean focus) {
+        if (row > 6) return;
+
+        boxes[row][col].setBackground(focus ? backgroundBlack : backgroundGrey);
+    }
+
+    private void clearEnteredNumber() {
+        for (int i = 0; i < enteredNumber.length; i++) {
+            enteredNumber[i] = "";
         }
     }
 }

@@ -12,12 +12,14 @@ public class MainActivity extends AppCompatActivity {
     private final int RESULT_ANIME_DURATION = 400;
 
     GameManager gameManager;
+    AdManager adManager;
     GameStatus gameStatus;
     GameStatus previousStatus;
     StatisticUtil statisticUtil;
     GameFinishedDialog finishedDialog;
     LifeCycleManager lifeCycleManager;
     CustomNumPad numPad;
+    WatchAdDialog watchAdDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        adManager = new AdManager(this, findViewById(R.id.adBanner));
+        watchAdDialog = new WatchAdDialog(adManager, (dimaond) -> onRewardAdsFinished(dimaond));
+
+        ((ScoreView) findViewById(R.id.scoreView)).setOnAddClickListener(() -> {
+            watchAdDialog.show(getSupportFragmentManager(), "watch");
+        });
+
         statisticUtil = new StatisticUtil(this, findViewById(R.id.scoreView));
         lifeCycleManager = new LifeCycleManager(this);
         gameManager = new GameManager(this, getBoxes(), getResultViews(),
@@ -60,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
             previousStatus = lifeCycleManager.getPreviousGameStatus();
             gameFinished(gameManager.generateResult());
         }
+    }
+
+    private void onRewardAdsFinished(Integer dimaond) {
+        statisticUtil.setScore(statisticUtil.getScore() + dimaond);
     }
 
     private ResultView[] getResultViews() {
@@ -134,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
             String deletedKey = gameManager.delete();
             numPad.setDisable(deletedKey, false);
         } else {
+            if (gameManager.enteredNumber().length() >= 4) return;
+
             gameManager.write(String.valueOf(((TextView) view).getText()));
             numPad.setDisable(String.valueOf(((TextView) view).getText()), true);
         }
@@ -206,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
     private void onGiveLifeClick(View view) {
         int score = statisticUtil.getScore();
         if (score < 2) {
-            //TODO(ugur) show reward ads
+            watchAdDialog.show(getSupportFragmentManager(), "watchDialog");
             return;
         }
         gameStatus = GameStatus.SECOND_CHANGE;

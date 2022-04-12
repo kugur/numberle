@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class ScoreView extends ConstraintLayout {
+
     public ScoreView(@NonNull Context context) {
         super(context);
         init(context);
@@ -37,5 +38,9 @@ public class ScoreView extends ConstraintLayout {
 
     public void setScore(String score) {
         ((TextView) findViewById(R.id.diamond_score_text)).setText(score);
+    }
+
+    public void setOnAddClickListener(Runnable runnable) {
+        findViewById(R.id.diamond_add).setOnClickListener((v) -> runnable.run());
     }
 }

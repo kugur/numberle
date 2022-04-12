@@ -12,16 +12,15 @@
             android:id="@+id/result_view_box_4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="1dp"
+            android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:background="@drawable/box_background"
-            />
+            android:background="@drawable/box_background" />
 
         <TextView
             android:id="@+id/result_view_box_3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="1dp"
+            android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/box_background" />
 
@@ -29,7 +28,7 @@
             android:id="@+id/result_view_box_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="1dp"
+            android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/box_background" />
 
@@ -37,7 +36,7 @@
             android:id="@+id/result_view_box_1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="1dp"
+            android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/box_background" />
     </LinearLayout>

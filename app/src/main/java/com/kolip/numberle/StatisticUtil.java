@@ -67,6 +67,6 @@ public class StatisticUtil {
     }
 
     public int getScore() {
-        return 10; //sharedPreferences.getInt(SCORE_DIAMOND, 0);
+        return sharedPreferences.getInt(SCORE_DIAMOND, 0);
     }
 }
