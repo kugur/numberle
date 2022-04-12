@@ -169,7 +169,7 @@
                 android:id="@+id/give_life_on_game_finished"
                 android:layout_width="56dp"
                 android:layout_height="50dp"
-                android:background="@drawable/ic_joker_give_life_2" />
+                android:background="@drawable/give_life_button" />
 
             <View
                 style="@style/VerticalDivider"
