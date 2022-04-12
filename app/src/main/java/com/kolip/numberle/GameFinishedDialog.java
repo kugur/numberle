@@ -3,6 +3,7 @@ package com.kolip.numberle;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ public class GameFinishedDialog extends AppCompatDialogFragment {
 
     int showGiveLife;
     Statitics statistic;
-    Spanned description;
+    String description;
     String title;
 
     Consumer<View> onGiveLifeHandle;
@@ -51,6 +52,7 @@ public class GameFinishedDialog extends AppCompatDialogFragment {
         ((TextView) customDialog.findViewById(R.id.correct_word_on_finished_dialog))
                 .setText(description);
         initializeStatics();
+        initializeDescription();
         return builder.create();
     }
 
@@ -62,7 +64,7 @@ public class GameFinishedDialog extends AppCompatDialogFragment {
         showGiveLife = visibility ? View.VISIBLE : View.INVISIBLE;
     }
 
-    public void setDescription(Spanned description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -76,5 +78,18 @@ public class GameFinishedDialog extends AppCompatDialogFragment {
         ((TextView) customDialog.findViewById(R.id.total_win)).setText(statistic.getSuccessRatio());
         ((TextView) customDialog.findViewById(R.id.strike)).setText(statistic.getStrike());
         ((TextView) customDialog.findViewById(R.id.max_strike)).setText(statistic.getMaxStrike());
+    }
+
+    private void initializeDescription() {
+        if (description != null && !description.equals("")) {
+            Spanned styledText = Html.fromHtml(
+                    getResources().getString(R.string.finished_dialog_correct_word, description),
+                    Html.FROM_HTML_MODE_LEGACY);
+            ((TextView) customDialog.findViewById(R.id.correct_word_on_finished_dialog))
+                    .setText(styledText);
+        } else {
+            ((TextView) customDialog.findViewById(R.id.correct_word_on_finished_dialog))
+                    .setText(Html.fromHtml("", Html.FROM_HTML_MODE_LEGACY));
+        }
     }
 }

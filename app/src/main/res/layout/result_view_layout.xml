@@ -15,7 +15,7 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="@drawable/box_background"
-             />
+            />
 
         <TextView
             android:id="@+id/result_view_box_3"

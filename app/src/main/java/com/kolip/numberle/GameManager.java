@@ -55,17 +55,21 @@ public class GameManager {
         }
     }
 
-    public void delete() {
+    public String delete() {
+        String deletedKey = "";
         if (boxes[currentRow][currentCol].getText().equals("") && currentCol > 0) {
             currentCol--;
         }
 
         boxes[currentRow][currentCol].setText("");
+        deletedKey = enteredNumber[currentCol];
         enteredNumber[currentCol] = "";
 
         if (currentCol > 0) {
             currentCol--;
         }
+
+        return deletedKey;
     }
 
     public String newGame() {

@@ -17,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
     StatisticUtil statisticUtil;
     GameFinishedDialog finishedDialog;
     LifeCycleManager lifeCycleManager;
+    CustomNumPad numPad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((CustomNumPad) findViewById(R.id.customNumPad)).setKeyListener(this::onKeyClicked);
+        numPad = findViewById(R.id.customNumPad);
+        numPad.setKeyListener(this::onKeyClicked);
         init();
     }
 
@@ -126,11 +128,14 @@ public class MainActivity extends AppCompatActivity {
             lifeCycleManager.addEnteredWord(gameManager.enteredNumber());
             previousStatus = gameStatus;
             gameStatus = GameStatus.IN_PROGRESS;
+            numPad.setDisableAll(false);
             gameManager.enter();
         } else if (view.getId() == R.id.key_delete) {
-            gameManager.delete();
+            String deletedKey = gameManager.delete();
+            numPad.setDisable(deletedKey, false);
         } else {
             gameManager.write(String.valueOf(((TextView) view).getText()));
+            numPad.setDisable(String.valueOf(((TextView) view).getText()), true);
         }
     }
 
@@ -155,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (gameStatus == GameStatus.FINISHED) {
             finishedDialog.setTitle(getResources().getString(R.string.statistic));
             finishedDialog.showGiveLife(false);
+            finishedDialog.setDescription(numberResult.getCorrectPositionNumberCount() != 4 ?
+                    gameManager.getCorrectNumber() : "");
             finishedDialog.show(getSupportFragmentManager(), GAME_FINISHED_DIALOG_TAG);
         }
         Log.d("GameFinished", "Game finished dialog has been finished.");

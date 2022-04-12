@@ -8,10 +8,11 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class CustomNumPad extends LinearLayout {
+    HashMap<String, View> keyMap = new HashMap<>();
 
     public CustomNumPad(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -33,24 +34,38 @@ public class CustomNumPad extends LinearLayout {
     }
 
     private void attachListener(Consumer<View> keyListener) {
-        ArrayList<View> keys = new ArrayList<>();
-        keys.add(findViewById(R.id.num_0));
-        keys.add(findViewById(R.id.num_1));
-        keys.add(findViewById(R.id.num_2));
-        keys.add(findViewById(R.id.num_3));
-        keys.add(findViewById(R.id.num_4));
-        keys.add(findViewById(R.id.num_5));
-        keys.add(findViewById(R.id.num_6));
-        keys.add(findViewById(R.id.num_7));
-        keys.add(findViewById(R.id.num_8));
-        keys.add(findViewById(R.id.num_9));
-        keys.add(findViewById(R.id.key_delete));
-        keys.add(findViewById(R.id.key_Enter));
+        keyMap.put("0", findViewById(R.id.num_0));
+        keyMap.put("1", findViewById(R.id.num_1));
+        keyMap.put("2", findViewById(R.id.num_2));
+        keyMap.put("3", findViewById(R.id.num_3));
+        keyMap.put("4", findViewById(R.id.num_4));
+        keyMap.put("5", findViewById(R.id.num_5));
+        keyMap.put("6", findViewById(R.id.num_6));
+        keyMap.put("7", findViewById(R.id.num_7));
+        keyMap.put("8", findViewById(R.id.num_8));
+        keyMap.put("9", findViewById(R.id.num_9));
+        keyMap.put("delete", findViewById(R.id.key_delete));
+        keyMap.put("enter", findViewById(R.id.key_Enter));
 
-        keys.forEach(key -> key.setOnClickListener(keyListener::accept));
+        keyMap.values().forEach(key -> key.setOnClickListener(keyListener::accept));
     }
+
 
     public void setKeyListener(Consumer<View> listener) {
         attachListener(listener);
+    }
+
+    public void setDisable(String key, boolean disable) {
+        if (key.equals("")) return;
+
+        keyMap.get(key).setClickable(!disable);
+        keyMap.get(key).setAlpha(disable ? 0.5f : 1.0f);
+    }
+
+    public void setDisableAll(boolean disable) {
+        keyMap.values().forEach(v -> {
+            v.setClickable(!disable);
+            v.setAlpha(1.0f);
+        });
     }
 }
