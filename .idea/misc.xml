@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.228" />
         <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/drawable/add_button.xml" value="0.1745" />
         <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/drawable/background.xml" value="0.3225" />
         <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/drawable/box_background.xml" value="0.2" />
@@ -37,6 +38,8 @@
         <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/layout/statistic_dialog.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/layout/statistic_section.xml" value="0.19275582573454914" />
         <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/layout/view_diamond_score.xml" value="0.21757852077001014" />
+        <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2465" />
+        <entry key="..\:/Projects/AndroidStudioProjects/Numberle/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2465" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/result_view_layout.xml" value="0.1" />
       </map>
