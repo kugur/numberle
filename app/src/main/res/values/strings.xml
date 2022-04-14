@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Numberle</string>
+    <string name="app_name">numberLE - guess Number Puzzle</string>
     <string name="statistic">STATISTICS</string>
     <string name="statistic_previous">STATISTICS (Except this game)</string>
     <string name="helper_description1">You should fill all boxes before hit enter. To sent hit enter.</string>
