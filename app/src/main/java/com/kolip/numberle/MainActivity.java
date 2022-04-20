@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         if (gameStatus == GameStatus.FINISHED) {
             setScore();
             statisticUtil.saveStatistic(numberResult.getCorrectPositionNumberCount() == 4);
+            adManager.showFullScreenAd(this);
         }
 
         finishedDialog = new GameFinishedDialog(this::onGiveLifeClick,
@@ -209,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
         if (gameStatus != GameStatus.FINISHED) {
             statisticUtil.saveStatistic(false);
         }
+        adManager.initializeFullScreenAd(this);
         gameStatus = GameStatus.READY;
         setVisibilities();
         lifeCycleManager.clearEnteredWord();
