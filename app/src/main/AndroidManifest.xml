@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Numberle">
+        <activity
+            android:name=".clasic.ClasicNumberle"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8084690313459333~6696980101" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MainList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

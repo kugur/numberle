@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A7DADC"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="2dp"
+        android:text="@string/helper_description1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="2dp"
+        android:text="@string/helper_description2" />
+
+    <View
+        style="@style/HorizontalDivider"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/five_letter_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/helper_description3"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/helperBox"
+            android:text="1" />
+
+        <TextView
+            style="@style/helperBox"
+            android:backgroundTint="@color/green"
+            android:text="2"
+            android:textColor="@color/white" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="3" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="4" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="5" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="@string/helper_description4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/helperBox"
+            android:text="1" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="2" />
+
+        <TextView
+            style="@style/helperBox"
+            android:backgroundTint="@color/yellow"
+            android:text="3"
+            android:textColor="@color/white" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="4" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="5" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="@string/helper_description5" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/helperBox"
+            android:text="1" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="2" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="3" />
+
+        <TextView
+            style="@style/helperBox"
+            android:text="4" />
+
+        <TextView
+            style="@style/helperBox"
+            android:backgroundTint="@color/grey_border"
+            android:text="5"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="@string/helper_description6" />
+
+    <View
+        style="@style/HorizontalDivider"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/five_letter_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

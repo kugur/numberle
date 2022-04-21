@@ -19,22 +19,23 @@ public class StatisticUtil {
     private int maxStrikeCount;
 
     private SharedPreferences.Editor editor;
-    ScoreView scoreView;
-
+    private ScoreView scoreView;
+    private String prefix;
     private SharedPreferences sharedPreferences;
 
-    public StatisticUtil(Activity gameActivity, ScoreView scoreView) {
+    public StatisticUtil(Activity gameActivity, ScoreView scoreView, String prefix) {
         sharedPreferences = gameActivity.getSharedPreferences(STATISTIC_CONTEXT_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         this.scoreView = scoreView;
+        this.prefix = prefix;
         initializeValues();
     }
 
     private void initializeValues() {
-        totalGame = sharedPreferences.getInt(TOTAL_GAME, 0);
-        totalGuessCorrectly = sharedPreferences.getInt(TOTAL_GUESS_CORRECTLY, 0);
-        strikeCount = sharedPreferences.getInt(STRIKE_COUNT, 0);
-        maxStrikeCount = sharedPreferences.getInt(MAX_STRIKE_COUNT, 0);
+        totalGame = sharedPreferences.getInt(prefix + TOTAL_GAME, 0);
+        totalGuessCorrectly = sharedPreferences.getInt(prefix + TOTAL_GUESS_CORRECTLY, 0);
+        strikeCount = sharedPreferences.getInt(prefix + STRIKE_COUNT, 0);
+        maxStrikeCount = sharedPreferences.getInt(prefix + MAX_STRIKE_COUNT, 0);
     }
 
     public void saveStatistic(boolean guessCorrectly) {
@@ -46,10 +47,10 @@ public class StatisticUtil {
         } else {
             strikeCount = 0;
         }
-        editor.putInt(TOTAL_GAME, ++totalGame);
-        editor.putInt(TOTAL_GUESS_CORRECTLY, totalGuessCorrectly);
-        editor.putInt(STRIKE_COUNT, strikeCount);
-        editor.putInt(MAX_STRIKE_COUNT, maxStrikeCount);
+        editor.putInt(prefix + TOTAL_GAME, ++totalGame);
+        editor.putInt(prefix + TOTAL_GUESS_CORRECTLY, totalGuessCorrectly);
+        editor.putInt(prefix + STRIKE_COUNT, strikeCount);
+        editor.putInt(prefix + MAX_STRIKE_COUNT, maxStrikeCount);
 
         editor.commit();
     }
@@ -61,12 +62,12 @@ public class StatisticUtil {
     }
 
     public void setScore(int score) {
-        editor.putInt(SCORE_DIAMOND, score);
+        editor.putInt(prefix + SCORE_DIAMOND, score);
         editor.commit();
         scoreView.setScore("" + score);
     }
 
     public int getScore() {
-        return sharedPreferences.getInt(SCORE_DIAMOND, 0);
+        return sharedPreferences.getInt(prefix + SCORE_DIAMOND, 0);
     }
 }

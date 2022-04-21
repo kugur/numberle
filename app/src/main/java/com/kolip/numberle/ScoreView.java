@@ -38,6 +38,7 @@ public class ScoreView extends ConstraintLayout {
 
     public void setScore(String score) {
         ((TextView) findViewById(R.id.diamond_score_text)).setText(score);
+        invalidate();
     }
 
     public void setOnAddClickListener(Runnable runnable) {

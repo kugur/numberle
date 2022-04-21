@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final static String GAME_FINISHED_DIALOG_TAG = "gameFinishedDialog";
-    private final int RESULT_ANIME_DURATION = 400;
 
     GameManager gameManager;
     AdManager adManager;
@@ -49,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             watchAdDialog.show(getSupportFragmentManager(), "watch");
         });
 
-        statisticUtil = new StatisticUtil(this, findViewById(R.id.scoreView));
-        lifeCycleManager = new LifeCycleManager(this);
+        statisticUtil = new StatisticUtil(this, findViewById(R.id.scoreView), "");
+        lifeCycleManager = new LifeCycleManager(this, "");
         gameManager = new GameManager(this, getBoxes(), getResultViews(),
                 lifeCycleManager.getCorrectWord());
 
