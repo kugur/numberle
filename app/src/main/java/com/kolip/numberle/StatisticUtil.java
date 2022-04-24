@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.kolip.numberle.clasic.ClassicStatics;
+
+import java.util.Calendar;
+
 
 public class StatisticUtil {
     private static final String STATISTIC_CONTEXT_NAME = "statistic_numberle";
@@ -12,6 +16,15 @@ public class StatisticUtil {
     private static final String STRIKE_COUNT = "strikeCount";
     private static final String MAX_STRIKE_COUNT = "maxStrikeCount";
     private static final String SCORE_DIAMOND = "diamondScore";
+
+    private final String CLASSIC_DAY = "classic_day";
+    private final String CLASSIC_DAY_HIGH_SCORE = "classic_day_high_score";
+    private final String CLASSIC_WEEK = "classic_week";
+    private final String CLASSIC_WEEK_HIGH_SCORE = "classic_week_high_score";
+    private final String CLASSIC_MONTH = "classic_month";
+    private final String CLASSIC_MONTH_HIGH_SCORE = "classic_month_high_score";
+    private final String CLASSIC_YEAR = "classic_year";
+    private final String CLASSIC_YEAR_HIGH_SCORE = "classic_year_high_score";
 
     private int totalGame;
     private int totalGuessCorrectly;
@@ -69,5 +82,39 @@ public class StatisticUtil {
 
     public int getScore() {
         return sharedPreferences.getInt(prefix + SCORE_DIAMOND, 0);
+    }
+
+    public void setClassicScore(long bestTime) {
+        Calendar now = Calendar.getInstance();
+        long timeClassicDayInMiliSeconds = sharedPreferences.getLong(CLASSIC_DAY, now.getTimeInMillis());
+        Calendar classicDay = Calendar.getInstance();
+        classicDay.setTimeInMillis(timeClassicDayInMiliSeconds);
+
+        if (classicDay.get(Calendar.DAY_OF_YEAR) != now.get(Calendar.DAY_OF_YEAR) ||
+                bestTime < sharedPreferences.getLong(CLASSIC_DAY_HIGH_SCORE, 99999999L)) {
+            editor.putLong(CLASSIC_DAY_HIGH_SCORE, bestTime);
+        }
+
+        if (classicDay.get(Calendar.WEEK_OF_YEAR) != now.get(Calendar.WEEK_OF_YEAR) ||
+                bestTime < sharedPreferences.getLong(CLASSIC_WEEK_HIGH_SCORE, 99999999L)) {
+            editor.putLong(CLASSIC_WEEK_HIGH_SCORE, bestTime);
+        }
+
+        if (classicDay.get(Calendar.MONTH) != now.get(Calendar.MONTH) ||
+                bestTime < sharedPreferences.getLong(CLASSIC_MONTH_HIGH_SCORE, 99999999L)) {
+            editor.putLong(CLASSIC_MONTH_HIGH_SCORE, bestTime);
+        }
+
+        if (classicDay.get(Calendar.YEAR) != now.get(Calendar.YEAR) ||
+                bestTime < sharedPreferences.getLong(CLASSIC_YEAR_HIGH_SCORE, 99999999L)) {
+            editor.putLong(CLASSIC_YEAR_HIGH_SCORE, bestTime);
+        }
+    }
+
+    public ClassicStatics getClassicStatics() {
+        return new ClassicStatics(sharedPreferences.getLong(CLASSIC_DAY_HIGH_SCORE, 0L),
+                sharedPreferences.getLong(CLASSIC_WEEK_HIGH_SCORE, 0L),
+                sharedPreferences.getLong(CLASSIC_MONTH_HIGH_SCORE, 0L),
+                sharedPreferences.getLong(CLASSIC_YEAR_HIGH_SCORE, 0L));
     }
 }
