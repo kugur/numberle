@@ -4,15 +4,19 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
+
+import com.kolip.numberle.clasic.BoxStatus;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class CustomNumPad extends LinearLayout {
     HashMap<String, View> keyMap = new HashMap<>();
+    HashMap<String, BoxStatus> keyStatus = new HashMap<>();
 
     public CustomNumPad(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -47,6 +51,19 @@ public class CustomNumPad extends LinearLayout {
         keyMap.put("delete", findViewById(R.id.key_delete));
         keyMap.put("enter", findViewById(R.id.key_Enter));
 
+
+        keyStatus.put("0", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("1", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("2", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("3", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("4", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("5", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("6", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("7", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("8", BoxStatus.EMPTY_TEXT);
+        keyStatus.put("9", BoxStatus.EMPTY_TEXT);
+
+
         keyMap.values().forEach(key -> key.setOnClickListener(keyListener::accept));
     }
 
@@ -60,6 +77,37 @@ public class CustomNumPad extends LinearLayout {
 
         keyMap.get(key).setClickable(!disable);
         keyMap.get(key).setAlpha(disable ? 0.5f : 1.0f);
+    }
+
+    public void setStyle(String key, BoxStatus status) {
+        if (status == BoxStatus.CORRECT_POSITION) {
+            keyMap.get(key).setBackgroundColor(getResources().getColor(R.color.green));
+            ((Button) keyMap.get(key)).setTextColor(getResources().getColor(R.color.white));
+            keyStatus.put(key, status);
+        } else if (status == BoxStatus.WRONG_POSITION && keyStatus.get(key) != BoxStatus.CORRECT_POSITION) {
+            keyMap.get(key).setBackgroundColor(getResources().getColor(R.color.yellow));
+            ((Button) keyMap.get(key)).setTextColor(getResources().getColor(R.color.white));
+            keyStatus.put(key, status);
+        } else if (status == BoxStatus.WRONG_CHAR && keyStatus.get(key) != BoxStatus.CORRECT_POSITION &&
+                keyStatus.get(key) != BoxStatus.WRONG_POSITION) {
+            keyMap.get(key).setBackgroundColor(getResources().getColor(R.color.gray_600));
+            ((Button) keyMap.get(key)).setTextColor(getResources().getColor(R.color.white));
+            keyStatus.put(key, status);
+        }
+    }
+
+    public void clear() {
+        for (View value : keyMap.values()) {
+            if (value.getId() == R.id.key_Enter || value.getId() == R.id.key_delete) continue;
+
+            ((Button) value).setTextColor(getResources().getColor(R.color.black));
+            value.setBackgroundColor(getResources().getColor(R.color.light_grey));
+        }
+
+        keyStatus.keySet().forEach(key -> keyStatus.put(key, BoxStatus.EMPTY_TEXT));
+
+        setClickable(true);
+        setAlpha(1.0f);
     }
 
     public void setDisableAll(boolean disable) {

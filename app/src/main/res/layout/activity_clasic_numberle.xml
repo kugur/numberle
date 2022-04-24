@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color_start"
+    tools:context=".clasic.ClasicNumberle">
+
+    <ImageButton
+        android:id="@+id/help_dialog_button"
+        android:layout_width="76dp"
+        android:layout_height="61dp"
+        android:backgroundTint="@color/transperant"
+        android:src="@drawable/help_button"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="246dp"
+        android:layout_height="73dp"
+        android:src="@drawable/ic_drawing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/statistic_button_on_game"
+        android:layout_width="77dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/transperant"
+        android:src="@drawable/statistic_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.kolip.numberle.clasic.CustomChronometer
+        android:id="@+id/duration_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat"
+        app:layout_constraintTop_toBottomOf="@+id/title_divider" />
+
+    <View
+        android:id="@+id/title_divider"
+        style="@style/divider"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/customNumPad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_1_box_1"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_1_box_2"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_1_box_3"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_1_box_4"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_1_box_5"
+                style="@style/myBoxDefault" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_2_box_1"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_2_box_2"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_2_box_3"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_2_box_4"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_2_box_5"
+                style="@style/myBoxDefault" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_3_box_1"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_3_box_2"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_3_box_3"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_3_box_4"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_3_box_5"
+                style="@style/myBoxDefault" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_4_box_1"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_4_box_2"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_4_box_3"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_4_box_4"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_4_box_5"
+                style="@style/myBoxDefault" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_5_box_1"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_5_box_2"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_5_box_3"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_5_box_4"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_5_box_5"
+                style="@style/myBoxDefault" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_6_box_1"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_6_box_2"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_6_box_3"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_6_box_4"
+                style="@style/myBoxDefault" />
+
+            <com.kolip.numberle.clasic.BoxView
+                android:id="@+id/row_6_box_5"
+                style="@style/myBoxDefault" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_game_button_on_game"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/green"
+        android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-8084690313459333/4070816769"
+        app:layout_constraintBottom_toTopOf="@+id/customNumPad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.gms.ads.AdView>
+
+    <com.kolip.numberle.CustomNumPad
+        android:id="@+id/customNumPad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

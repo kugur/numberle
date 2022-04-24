@@ -17,16 +17,18 @@ public class LifeCycleManager {
     private String gameStatus;
     private String previousStatus;
     private String correctWord;
+    private String prefix;
 
     private SharedPreferences sharedPreferences;
 
-    public LifeCycleManager(Activity gameActivity) {
+    public LifeCycleManager(Activity gameActivity, String prefix) {
+        this.prefix = prefix;
         sharedPreferences = gameActivity.getPreferences(Context.MODE_PRIVATE);
 
-        correctWord = sharedPreferences.getString(CORRECT_WORD, "");
-        enteredWords.addAll(stringToList(sharedPreferences.getString(ENTERED_WORDS, "")));
-        gameStatus = sharedPreferences.getString(GAME_STATUS, GameStatus.READY.name());
-        previousStatus = sharedPreferences.getString(PREVIOUS_GAME_STATUS, GameStatus.READY.name());
+        correctWord = sharedPreferences.getString(prefix + CORRECT_WORD, "");
+        enteredWords.addAll(stringToList(sharedPreferences.getString(prefix + ENTERED_WORDS, "")));
+        gameStatus = sharedPreferences.getString(prefix + GAME_STATUS, GameStatus.READY.name());
+        previousStatus = sharedPreferences.getString(prefix + PREVIOUS_GAME_STATUS, GameStatus.READY.name());
     }
 
     public void addEnteredWord(String enteredWord) {
@@ -51,10 +53,10 @@ public class LifeCycleManager {
 
     public void persist() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(ENTERED_WORDS, listToString(enteredWords));
-        editor.putString(CORRECT_WORD, correctWord);
-        editor.putString(GAME_STATUS, gameStatus);
-        editor.putString(PREVIOUS_GAME_STATUS, previousStatus);
+        editor.putString(prefix + ENTERED_WORDS, listToString(enteredWords));
+        editor.putString(prefix + CORRECT_WORD, correctWord);
+        editor.putString(prefix + GAME_STATUS, gameStatus);
+        editor.putString(prefix + PREVIOUS_GAME_STATUS, previousStatus);
         editor.commit();
     }
 

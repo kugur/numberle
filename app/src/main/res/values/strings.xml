@@ -16,4 +16,9 @@
     <string name="watch_ads_earn_dimaond_title">WATCH ADS and EARN DIAMONDS</string>
     <string name="new_game">NEW GAME</string>
     <string name="finished_dialog_correct_word">CORRECT NUMBER: &lt;big>&lt;b&gt;%1$s&lt;/b&gt;&lt;/big></string>
+    <string name="title_score_day">Best of Day:</string>
+    <string name="title_score_week">Best of Week:</string>
+    <string name="title_score_month">Best of Month:</string>
+    <string name="title_score_year">Best of Year:</string>
+    <string name="your_score">Time:</string>
 </resources>
